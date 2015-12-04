@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gestionscolarite" default="compile.module.gestionscolarite">
+  <dirname property="module.gestionscolarite.basedir" file="${ant.file.module_gestionscolarite}"/>
+  
+  <property name="module.jdk.home.gestionscolarite" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gestionscolarite" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gestionscolarite" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gestionscolarite" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="gestionscolarite.output.dir" value="${module.gestionscolarite.basedir}/target/classes"/>
+  <property name="gestionscolarite.testoutput.dir" value="${module.gestionscolarite.basedir}/target/test-classes"/>
+  
+  <path id="gestionscolarite.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gestionscolarite.module.production.classpath">
+    <path refid="${module.jdk.classpath.gestionscolarite}"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_org.javalite:activejdbc:1.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_org.javalite:javalite-common:1.4.11.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.8.11.2.classpath"/>
+  </path>
+  
+  <path id="gestionscolarite.runtime.production.module.classpath">
+    <pathelement location="${gestionscolarite.output.dir}"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_org.javalite:activejdbc:1.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_org.javalite:javalite-common:1.4.11.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.8.11.2.classpath"/>
+  </path>
+  
+  <path id="gestionscolarite.module.classpath">
+    <path refid="${module.jdk.classpath.gestionscolarite}"/>
+    <pathelement location="${gestionscolarite.output.dir}"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_org.javalite:activejdbc:1.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_org.javalite:javalite-common:1.4.11.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.8.11.2.classpath"/>
+  </path>
+  
+  <path id="gestionscolarite.runtime.module.classpath">
+    <pathelement location="${gestionscolarite.testoutput.dir}"/>
+    <pathelement location="${gestionscolarite.output.dir}"/>
+    <path refid="library.maven:_com.guigarage:responsivefx:0.8.classpath"/>
+    <path refid="library.maven:_org.javalite:activejdbc:1.4.11.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_org.javalite:javalite-common:1.4.11.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.8.11.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gestionscolarite">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gestionscolarite">
+    <patternset refid="excluded.from.module.gestionscolarite"/>
+  </patternset>
+  
+  <path id="gestionscolarite.module.sourcepath">
+    <dirset dir="${module.gestionscolarite.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="gestionscolarite.module.test.sourcepath">
+    <dirset dir="${module.gestionscolarite.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gestionscolarite" depends="compile.module.gestionscolarite.production,compile.module.gestionscolarite.tests" description="Compile module GestionScolarite"/>
+  
+  <target name="compile.module.gestionscolarite.production" depends="register.custom.compilers" description="Compile module GestionScolarite; production classes">
+    <mkdir dir="${gestionscolarite.output.dir}"/>
+    <javac2 destdir="${gestionscolarite.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gestionscolarite}/javac">
+      <compilerarg line="${compiler.args.gestionscolarite}"/>
+      <bootclasspath refid="gestionscolarite.module.bootclasspath"/>
+      <classpath refid="gestionscolarite.module.production.classpath"/>
+      <src refid="gestionscolarite.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gestionscolarite"/>
+    </javac2>
+    
+    <copy todir="${gestionscolarite.output.dir}">
+      <fileset dir="${module.gestionscolarite.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.gestionscolarite.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gestionscolarite.tests" depends="register.custom.compilers,compile.module.gestionscolarite.production" description="compile module GestionScolarite; test classes" unless="skip.tests">
+    <mkdir dir="${gestionscolarite.testoutput.dir}"/>
+    <javac2 destdir="${gestionscolarite.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gestionscolarite}/javac">
+      <compilerarg line="${compiler.args.gestionscolarite}"/>
+      <bootclasspath refid="gestionscolarite.module.bootclasspath"/>
+      <classpath refid="gestionscolarite.module.classpath"/>
+      <src refid="gestionscolarite.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gestionscolarite"/>
+    </javac2>
+    
+    <copy todir="${gestionscolarite.testoutput.dir}">
+      <fileset dir="${module.gestionscolarite.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.gestionscolarite" description="cleanup module">
+    <delete dir="${gestionscolarite.output.dir}"/>
+    <delete dir="${gestionscolarite.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="582.0" stylesheets="@../../style/test.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AllController">
+   <children>
+      <Button fx:id="etudiant" layoutX="110.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="gestion des etudiant" />
+      <Button fx:id="prof" layoutX="318.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="gestion des prof" />
+      <Button fx:id="" layoutX="318.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="gestion des ?" />
+      <Button fx:id="module" layoutX="110.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="gestion des modules" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#enterkeyPressed" prefHeight="387.0" prefWidth="603.0" stylesheets="@../../style/test.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+   <children>
+      <Label layoutX="169.0" layoutY="95.0" prefHeight="17.0" prefWidth="52.0" text="Login">
+      </Label>
+      <Label layoutX="169.0" layoutY="136.0" prefHeight="17.0" prefWidth="59.0" text="Password">
+      </Label>
+      <TextField fx:id="login" layoutX="236.0" layoutY="91.0" />
+      <TextField fx:id="password" layoutX="236.0" layoutY="132.0" />
+       <Button fx:id="valider" layoutX="333.0" layoutY="181.0" mnemonicParsing="false" onAction="#loginFunction" text="valider" />
+   </children>
+</AnchorPane>

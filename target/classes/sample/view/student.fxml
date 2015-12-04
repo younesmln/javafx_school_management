@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1250.0" stylesheets="@../../style/test.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.studentController">
+   <children>
+      <DatePicker fx:id="date" editable="false" layoutX="164.0" layoutY="209.0" prefHeight="25.0" prefWidth="200.0" promptText="dd/mm/yyyy" />
+      <Label layoutX="24.0" layoutY="130.0" prefHeight="17.0" prefWidth="68.0" text="Nom" />
+      <Label layoutX="23.0" layoutY="171.0" prefHeight="17.0" prefWidth="68.0" text="Prenom" />
+      <Label layoutX="24.0" layoutY="213.0" prefHeight="17.0" prefWidth="112.0" text="Date de naissance" />
+      <ComboBox fx:id="niveau" layoutX="166.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="23.0" layoutY="254.0" prefHeight="17.0" prefWidth="46.0" text="niveau" />
+      <TableView fx:id="studentsTable" layoutX="462.0" layoutY="126.0" prefHeight="403.0" prefWidth="762.0">
+        <columns>
+          <TableColumn fx:id="id_column" prefWidth="73.0" styleClass="tableColumn" text="Id" />
+          <TableColumn fx:id="nom_column" prefWidth="111.0" styleClass="tableColumn" text="nom" />
+          <TableColumn fx:id="prenom_column" prefWidth="146.0" styleClass="tableColumn" text="Prenom" />
+          <TableColumn fx:id="date_column" prefWidth="127.0" styleClass="tableColumn" text="Date de Naissance" />
+          <TableColumn fx:id="niveau_column" prefWidth="56.0" styleClass="tableColumn" text="Niveau" />
+          <TableColumn fx:id="sexe_column" prefWidth="66.0" styleClass="tableColumn" text="Sexe" />
+          <TableColumn fx:id="adresse_column" prefWidth="216.0" styleClass="tableColumn" text="Adresse" />
+        </columns>
+      </TableView>
+      <TextField fx:id="nom" layoutX="166.0" layoutY="126.0" prefHeight="25.0" prefWidth="200.0" promptText="nom" />
+      <TextField fx:id="prenom" layoutX="166.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button fx:id="btn_ajouter" layoutX="298.0" layoutY="425.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="25.0" prefWidth="68.0" text="Ajouter" />
+      <Label layoutX="23.0" layoutY="354.0" prefHeight="17.0" prefWidth="46.0" text="Adresse" />
+      <TextArea fx:id="adresse" layoutX="165.0" layoutY="319.0" prefHeight="86.0" prefWidth="200.0" />
+      <RadioButton layoutX="165.0" layoutY="290.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="68.0" selected="true" text="homme">
+         <toggleGroup>
+            <ToggleGroup fx:id="sexe" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="298.0" layoutY="290.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="68.0" text="femme" toggleGroup="$sexe" />
+      <Label layoutX="24.0" layoutY="290.0" prefHeight="17.0" prefWidth="36.0" text="sexe" />
+      <Separator layoutX="420.0" layoutY="99.0" orientation="VERTICAL" prefHeight="576.0" prefWidth="4.0" />
+      <Label id="header" prefHeight="101.0" prefWidth="1247.0" stylesheets="@../../style/test.css" text="Etudiant" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <padding>
+            <Insets left="25.0" />
+         </padding></Label>
+      <TextField fx:id="rechercheText" layoutX="462.0" layoutY="559.0" prefHeight="25.0" prefWidth="311.0" promptText="tappez quelque chose ..." />
+      <Button layoutX="813.0" layoutY="559.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="83.0" text="Chercher" />
+      <Separator layoutX="941.0" layoutY="529.0" orientation="VERTICAL" prefHeight="86.0" prefWidth="6.0" />
+      <Separator layoutX="1078.0" layoutY="529.0" orientation="VERTICAL" prefHeight="86.0" prefWidth="6.0" />
+      <Button layoutX="1108.0" layoutY="559.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="83.0" text="Supprimer" />
+      <Button layoutX="968.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="83.0" text="Modifier" />
+   </children>
+</AnchorPane>
