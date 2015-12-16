@@ -1,5 +1,6 @@
 package sample.controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AllController implements Initializable,  EventHandler<MouseEvent>{
+public class AllController implements Initializable {
     @FXML Button etudiant;
     @FXML Button prof;
     @FXML Button module;
@@ -24,30 +25,54 @@ public class AllController implements Initializable,  EventHandler<MouseEvent>{
         /*((Stage) ((Node) obj).getScene().getWindow()).close();
         Stage studentStage = new Stage();
         Parent root = null;*/
-        etudiant.setOnMouseClicked(this);
     }
 
-    @Override
-    public void handle(MouseEvent event) {
+    @FXML
+    public void prof(ActionEvent event){
         Button x = ((Button) event.getSource());
-        switch (x.getId()){
-            case "etudiant":
-                Stage studentStage = new Stage();
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                studentStage.setScene(new Scene(root));
-                studentStage.show();
-                ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-                break;
-            case "prof":
-                System.out.println("profffff");
-                break;
+        Stage profStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/prof.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
         }
+        profStage.setScene(new Scene(root));
+        profStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+
+    @FXML
+    public void etudiant(ActionEvent event){
+        Button x = ((Button) event.getSource());
+        Stage profStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        profStage.setScene(new Scene(root));
+        profStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+
+    @FXML
+    public void module(ActionEvent event){
+        Button x = ((Button) event.getSource());
+        Stage profStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/module.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        profStage.setScene(new Scene(root));
+        profStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
 }

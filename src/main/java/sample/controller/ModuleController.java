@@ -4,33 +4,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import sample.helper.TableEdit;
 import sample.model.Student;
 import sample.model.tableModel.StudentModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
 
 public class ModuleController implements Initializable {
 
-    @FXML ToggleGroup sexe;
-    @FXML TextField nom;
-    @FXML TextField prenom;
-    @FXML DatePicker date;
     @FXML ComboBox niveau;
-    @FXML TextArea adresse;
+    /*
+    @FXML TextField label;
+    @FXML TextField coefficient;
+    @FXML TextField credit;
     @FXML TextField rechercheText;
-    @FXML TableView<StudentModel> studentsTable;
+    @FXML TableView<StudentModel> modulesTable;
     @FXML TableColumn<StudentModel, String> id_column;
-    @FXML TableColumn<StudentModel, String> nom_column;
-    @FXML TableColumn<StudentModel, String> prenom_column;
-    @FXML TableColumn<StudentModel, String> date_column;
+    @FXML TableColumn<StudentModel, String> label_column;
+    @FXML TableColumn<StudentModel, String> coefficient_column;
     @FXML TableColumn<StudentModel, String> niveau_column;
-    @FXML TableColumn<StudentModel, String> sexe_column;
-    @FXML TableColumn<StudentModel, String> adresse_column;
+    @FXML TableColumn<StudentModel, String> credit_column;
 
     ObservableList<StudentModel> studentData;
     Hashtable<String,String> formvalues = new Hashtable<>();
@@ -44,13 +47,13 @@ public class ModuleController implements Initializable {
 
     @FXML
     protected void supprimer(ActionEvent e){
-        int selectedIndex = studentsTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = modulesTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0){
             showAlert("aucun choix", "choisissez un element pour le supprimer");
             return;
         }
-        StudentModel m = studentsTable.getItems().get(selectedIndex);
-        studentsTable.getItems().remove(selectedIndex);
+        StudentModel m = modulesTable.getItems().get(selectedIndex);
+        modulesTable.getItems().remove(selectedIndex);
         Student.deleteModel(m);
         toEdit = -1;
     }
@@ -58,19 +61,19 @@ public class ModuleController implements Initializable {
     @FXML
     protected void modifier(ActionEvent e){
         if (toEdit == -1) {
-            int selectedIndex = studentsTable.getSelectionModel().getSelectedIndex();
+            int selectedIndex = modulesTable.getSelectionModel().getSelectedIndex();
             if (selectedIndex < 0){
                 showAlert("aucun choix", "choisissez un element pour le modifier");
                 return;
             }
-            StudentModel m = studentsTable.getItems().get(selectedIndex);
+            StudentModel m = modulesTable.getItems().get(selectedIndex);
             toEdit = selectedIndex;
             initForm(m.getNom(), m.getPrenom(), m.getDatedeNaissance(),
                     m.getAdresse(), m.getLevel(), m.getGender());
             System.out.println("put informations .............");
         } else {
             System.out.println("start updating ...............");
-            insertFromForm(Integer.parseInt(studentsTable.getItems().get(toEdit).getId()));
+            insertFromForm(Integer.parseInt(modulesTable.getItems().get(toEdit).getId()));
             refresh(null);
             toEdit = -1;
         }
@@ -82,16 +85,13 @@ public class ModuleController implements Initializable {
         refresh(keyword);
 
     }
-
+    */
     public void initialize(URL location, ResourceBundle resources) {
         niveau.getItems().addAll("L1", "L2", "L3", "M1", "M2");
-        niveau.setValue("L1");
-        initTable();
-        refresh(null);
     }
-
+    /*
     protected void initTable() {
-        studentsTable.setEditable(true);
+        modulesTable.setEditable(true);
         id_column.setCellValueFactory(cellData -> cellData.getValue().idProperty());
 
         nom_column.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
@@ -159,23 +159,30 @@ public class ModuleController implements Initializable {
 
     public void initForm(String...v){
         if (v.length == 0) {
-            nom.setText("");
-            prenom.setText("");
-            date.getEditor().setText("");
-            adresse.setText("");
+            label.setText("");
+            coefficient.setText("");
+            credit.setText("");
             niveau.setValue("L1");
         }else{
-            nom.setText(v[0]);
-            prenom.setText(v[1]);
-            date.setValue(TableEdit.formater(v[2]));
-            adresse.setText(v[3]);
+            label.setText(v[0]);
+            coefficient.setText(v[1]);
+            credit.setText(v[2]);
             niveau.setValue(v[4]);
-            for (Toggle b : sexe.getToggles()){
-                if (((RadioButton) b).getText().equals(v[5])) {
-                    sexe.selectToggle(b);
-                    break;
-                }
-            }
         }
+    }*/
+
+    @FXML
+    void exit(ActionEvent event){
+        Stage AllStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/All.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        AllStage.setScene(new Scene(root));
+        AllStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 }

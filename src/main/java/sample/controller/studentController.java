@@ -5,13 +5,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.helper.TableEdit;
 import sample.model.Student;
 import sample.model.tableModel.StudentModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
@@ -179,5 +185,20 @@ public class studentController implements Initializable {
                 }
             }
         }
+    }
+
+    @FXML
+    void exit(ActionEvent event){
+        Stage AllStage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../view/All.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        AllStage.setScene(new Scene(root));
+        AllStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 }

@@ -50,5 +50,6 @@
       <Separator layoutX="1078.0" layoutY="529.0" orientation="VERTICAL" prefHeight="86.0" prefWidth="6.0" />
       <Button layoutX="1108.0" layoutY="559.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="83.0" text="Supprimer" />
       <Button layoutX="968.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="83.0" text="Modifier" />
+      <Button layoutX="1119.0" layoutY="38.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="83.0" text="quitter" />
    </children>
 </AnchorPane>
